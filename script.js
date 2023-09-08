@@ -18,4 +18,4 @@ function updateUTCDay() {
 updateUTCTime();
 updateUTCDay();
 
-//setInterval(updateUTCTime, 100);
+setInterval(updateUTCTime, 1000);
