@@ -46,8 +46,9 @@ function timeFormatter(hours, minutes, seconds, milliseconds) {
     const formmattedMinutes = leadingZero(minutes);
     const formattedSeconds = leadingZero(seconds);
 
-    const formattedTime = `${formmattedHours}:${formmattedMinutes}:${formattedSeconds} ${meridian} or ${milliseconds} ms`;
-    return formattedTime;
+    //const formattedTime = `${formmattedHours}:${formmattedMinutes}:${formattedSeconds} ${meridian} or ${milliseconds} ms`;
+const formattedTime = `${milliseconds}ms`;
+ return formattedTime;
 }
 
 function leadingZero(digits) {
