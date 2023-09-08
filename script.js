@@ -28,8 +28,9 @@ function trackUTCTime(date, time) {
         const hours = date.getUTCHours();
         const minutes = date.getUTCMinutes();
         const seconds = date.getUTCSeconds();
+        const milliseconds = date.getTime();
 
-        const formattedTime = timeFormatter(hours, minutes, seconds);
+        const formattedTime = timeFormatter(hours, minutes, seconds, milliseconds);
         time.textContent = formattedTime;
 
     }, 1000)
@@ -38,14 +39,14 @@ function trackUTCTime(date, time) {
 }
 
 
-function timeFormatter(hours, minutes, seconds) {
+function timeFormatter(hours, minutes, seconds, milliseconds) {
     const meridian = hours <= 12 ? 'AM' : 'PM';
 
     const formmattedHours = hours % 12 || 12;
     const formmattedMinutes = leadingZero(minutes);
     const formattedSeconds = leadingZero(seconds);
 
-    const formattedTime = `${formmattedHours}:${formmattedMinutes}:${formattedSeconds} ${meridian}`;
+    const formattedTime = `${formmattedHours}:${formmattedMinutes}:${formattedSeconds} ${meridian} or ${milliseconds} ms`;
     return formattedTime;
 }
 
