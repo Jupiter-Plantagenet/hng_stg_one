@@ -9,9 +9,8 @@ const days = [
 
 function trackUTCTime() {
     const utcTIme= Date.now();
-    //const utcFormattedTime = new Date().toLocaleTimeString();
-    //currentUTCTime.textContent = `${utcFormattedTime}||${utcTIme}ms`;
-    currentUTCTime.textContent = `${utcTime}ms`;
+    currentUTCTime.textContent = `${utcTIme}ms`;
+   
     
 }
 trackUTCTime();
