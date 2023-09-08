@@ -1,22 +1,21 @@
+displayUTCTime();
+setInterval(displayUTCTime, 1000);
+displayDate();
 
-const dataDay = document.querySelector("[data-testid='currentDayOfTheWeek']");
-const dataTime = document.querySelector("[data-testid='currentUTCTime']");
+function displayUTCTime() {
+    const currentUTCTimeInMilliseconds = new Date().getTime();
+    const currentUTCTime = document.querySelector('[data-testid="currentUTCTime"]');
+    currentUTCTime.textContent = `${currentUTCTimeInMilliseconds}ms`;
 
-console.log(dataDay)
-function updateUTCTime() {
-    const time = new Date().getTime();
-    dataTime.textContent = time
+    
 }
-function updateUTCDay() {
-    const options = {
-        timeZone: 'UTC',
-        weekday: 'long',
-    };
-    const day = new Date().toLocaleDateString('en-US', options);
-    dataDay.textContent = day
-}
-// Update the time initially
-updateUTCTime();
-updateUTCDay();
 
-setInterval(updateUTCTime, 100);
+function displayDate() {
+    const currentDay = new Date();
+    const week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const currentDayOfTheWeek = document.querySelector('[data-testid="currentDayOfTheWeek"]');
+
+    currentDayOfTheWeek.textContent = week[currentDay.getDay()];
+
+    
+}
