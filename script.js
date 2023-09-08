@@ -1,36 +1,22 @@
 
-const currentDayOfTheWeek = document.querySelector('p[data-testid="currentDayOfTheWeek"]');
-const currentUTCTime = document.querySelector('p[data-testid="currentUTCTime"]');
+const dataDay = document.querySelector("[data-testid='currentDayOfTheWeek']");
+const dataTime = document.querySelector("[data-testid='currentUTCTime']");
 
-const days = [
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-]
-
-
-function trackUTCTime() {
-    const utcTIme= Date.now();
-    currentUTCTime.textContent = `${utcTIme}ms`;
-   
-    
+console.log(dataDay)
+function updateUTCTime() {
+    const time = new Date().getTime();
+    dataTime.textContent = time
 }
-trackUTCTime();
-trackCurrentDay();
-setInterval(trackUTCTime, 1000);
-
-function trackCurrentDay(){
-    
-    const currentDay = days[new Date().getDay()];
-    currentDayOfTheWeek.textContent = currentDay;
-
+function updateUTCDay() {
+    const options = {
+        timeZone: 'UTC',
+        weekday: 'long',
+    };
+    const day = new Date().toLocaleDateString('en-US', options);
+    dataDay.textContent = day
 }
+// Update the time initially
+updateUTCTime();
+updateUTCDay();
 
-
-const github = document.getElementById("github");
-github.addEventListener("mouseenter", ()=>{
-    github.src = "brand-github-filled.svg";
-})
-github.addEventListener("mouseleave", ()=>{
-    github.src = "brand-github.svg";
-}
-
-)
+setInterval(updateUTCTime, 100);
