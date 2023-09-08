@@ -1,14 +1,29 @@
 
-const date = new Date();
-const time = document.getElementById("time");
-const week = [
+const currentDayOfTheWeek = document.querySelector('p[data-testid="currentDayOfTheWeek"]');
+const currentUTCTime = document.querySelector('p[data-testid="currentUTCTime"]');
+
+const days = [
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-];
+]
 
-const today = week[date.getDay()];
 
-const dayOfTheWeek = document.getElementById("dayoftheweek");
-dayOfTheWeek.textContent = today;
+function trackUTCTime() {
+    const utcTIme= Date.now();
+    const utcFormattedTime = new Date().toLocaleTimeString();
+    currentUTCTime.textContent = `${utcFormattedTime}||${utcTIme}ms`;
+    
+}
+trackUTCTime();
+trackCurrentDay();
+setInterval(trackUTCTime, 1000);
+
+function trackCurrentDay(){
+    
+    const currentDay = days[new Date().getDay()];
+    currentDayOfTheWeek.textContent = currentDay;
+
+}
+
 
 const github = document.getElementById("github");
 github.addEventListener("mouseenter", ()=>{
@@ -19,39 +34,3 @@ github.addEventListener("mouseleave", ()=>{
 }
 
 )
-
-
-trackUTCTime(date, time);
-
-function trackUTCTime(date, time) {
-    setInterval(() => {
-        const hours = date.getUTCHours();
-        const minutes = date.getUTCMinutes();
-        const seconds = date.getUTCSeconds();
-        const milliseconds = date.getTime();
-
-        const formattedTime = timeFormatter(hours, minutes, seconds, milliseconds);
-        time.textContent = formattedTime;
-
-        
-
-    }, 1000)
-
-    
-}
-
-
-function timeFormatter(hours, minutes, seconds, milliseconds) {
-    const meridian = hours <= 12 ? 'AM' : 'PM';
-
-    const formmattedHours = hours % 12 || 12;
-    const formmattedMinutes = leadingZero(minutes);
-    const formattedSeconds = leadingZero(seconds);
-
-    const formattedTime = `${formmattedHours}:${formmattedMinutes}:${formattedSeconds} ${meridian} or ${milliseconds} ms`;
-    return formattedTime;
-}
-
-function leadingZero(digits) {
-    return digits < 10? `0${digits}` : digits;
-}
