@@ -1,11 +1,11 @@
  
- .container{
+.container{
     display: flex;
     flex-direction: column;
     align-items: center;
  }
  
- div.img_container > img{
+ div.image > img{
     width: 400px;
     height: 400px;
     
@@ -13,7 +13,6 @@
 
 
 
-h5 > a:hover{
-   
+a:hover{
    cursor: pointer;
 }
