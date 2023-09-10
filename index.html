@@ -44,6 +44,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frontend Page</title>
+    <style>
+        /* Internal Stylesheet */
+        img[data-testid="slackDisplayImage"] {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
     <!-- Slack Name -->
@@ -66,6 +73,12 @@
 
     <!-- JavaScript to update dynamic data -->
     <script>
+        // Function to update the current day of the week and UTC time elements
+        function updateCurrentData() {
+            document.querySelector('[data-testid="currentDayOfTheWeek"]').textContent = getCurrentDayOfWeek();
+            document.querySelector('[data-testid="currentUTCTime"]').textContent = getCurrentUTCTime();
+        }
+
         // Function to get the current day of the week
         function getCurrentDayOfWeek() {
             const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -80,10 +93,11 @@
             return currentTime;
         }
 
-        // Update the current day of the week and UTC time elements
-        document.querySelector('[data-testid="currentDayOfTheWeek"]').textContent = getCurrentDayOfWeek();
-        document.querySelector('[data-testid="currentUTCTime"]').textContent = getCurrentUTCTime();
+        // Initial update
+        updateCurrentData();
+
+        // Update the data every 100 seconds
+        setInterval(updateCurrentData, 100);
     </script>
 </body>
 </html>
-
